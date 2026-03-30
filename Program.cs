@@ -9,16 +9,26 @@ namespace pbo
         [STAThread]
         public static void Main(string[] args)
         {
-            Application.Init();
+            int choice;
+            Console.Write("Pilih GUI / CLI\n1.GUI\n2.CLI\n");
+            choice = int.Parse(Console.ReadLine());
 
-            var app = new Application("org.pbo.pbo", GLib.ApplicationFlags.None);
-            app.Register(GLib.Cancellable.Current);
+            if (choice == 1)
+            {
+                Application.Init();
 
-            var win = new MainWindow();
-            app.AddWindow(win);
+                var app = new Application("org.pbo.pbo", GLib.ApplicationFlags.None);
+                app.Register(GLib.Cancellable.Current);
 
-            win.Show();
-            Application.Run();
+                var win = new MainWindow();
+                app.AddWindow(win);
+
+                win.Show();
+                Application.Run();
+            } else if (choice == 2)
+            {
+                MainCli maincli = new MainCli();
+            }
         }
     }
 }
